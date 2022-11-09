@@ -87,7 +87,7 @@ function noResultados(){
 
 function filtroNombre(producto){
     if(nombre.value){
-        return producto.nombre === nombre.value;
+        return producto.nombre.includes(nombre.value)
     }
     return producto;
 }
