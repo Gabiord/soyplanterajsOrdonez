@@ -29,24 +29,26 @@ productos.push(new producto("Maceta de Dinosaurio","mediana","blanco",800,"./ima
 
  
 // DATOS PARA BUSQUEDA
- 
-datosBusqueda={
-    nombre:'',
-    tamano:'',
-    color:'',
-    precioMin:'',
-    precioMax:''
 
-}
+const formulario=document.querySelector("#formulario");
+const nombre= document.querySelector("#fname");
+const tamano= document.querySelector("#ftamano");
+const color= document.querySelector("#fcolor");
+const precioMin= document.querySelector("#fpmin");
+const precioMax= document.querySelector("#fpmax");
+const atras= document.querySelector("#fatras");
+
+
+document.addEventListener("DOMContentLoaded",filtrarMacetas);
+formulario.addEventListener("submit",filtrarMacetas);
+
 
 // FUNCIONES NECESARIAS
 
 function mostrarMacetas(productos){
     productos.forEach(producto =>{
-        console.log(`<p>${producto.nombre} - Tamaño: ${producto.tamano} - Colores Disponibles:${producto.color} - Precio:${producto.precio}</p>`)
-        document.write(
-            `   
-                <div class="card tiendaProducto col-sm-6 col-md-4 col-lg-3" style="width: 18rem;">
+        document.querySelector("#resultado").innerHTML+=
+            `<div class="card tiendaProducto col-sm-8 col-md-6 col-lg-4" style="width: 18rem;">
                     <img src="${producto.foto}" class="card-img-top" alt="${producto.nombre}">
                     <div class="card-body">
                     <h5 class="card-title">${producto.nombre}</h5>
@@ -61,11 +63,15 @@ function mostrarMacetas(productos){
                       <a href="#" class="card-link">Comprar</a>
                       <a href="#" class="card-link">Recomendar</a>
                     </div>
-                </div>`)
-    });
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>`
+        }    
+    )  
 }
 
-function filtrarMacetas(){
+function filtrarMacetas(evt){
+    evt.preventDefault()
+    document.querySelector("#resultado").innerHTML=""
     const resultado=productos.filter(filtroNombre).filter(filtroTamano).filter(filtroColor).filter(filtroPrecioMin).filter(filtroPrecioMax)
         if(resultado.length){
             mostrarMacetas(resultado)
@@ -76,46 +82,40 @@ function filtrarMacetas(){
 }
 
 function noResultados(){
-    console.log("NO HAY RESULTADO")
-    document.write("No hay resultados")
+    document.querySelector("#resultado").innerHTML+= `No Hay resultado`
 }
 
 function filtroNombre(producto){
-    if(datosBusqueda.nombre){
-        return producto.nombre === datosBusqueda.nombre;
+    if(nombre.value){
+        return producto.nombre === nombre.value;
     }
     return producto;
 }
 
 function filtroTamano(producto){
-    if(datosBusqueda.tamano){
-        return producto.tamano === datosBusqueda.tamano;
+    if(tamano.value){
+        return producto.tamano === tamano.value;
     }
     return producto;
 }
 
 function filtroColor(producto){
-    if(datosBusqueda.color){
-        return producto.color === datosBusqueda.color
+    if(color.value){
+        return producto.color === color.value
     }
     return producto;
 }
 
 function filtroPrecioMin(producto){
-    if(datosBusqueda.precioMin){
-        return producto.precio >= datosBusqueda.precioMin
+    if(precioMin.value){
+        return producto.precio >= precioMin.value
     }
     return producto;
 }
 
 function filtroPrecioMax(producto){
-    if(datosBusqueda.precioMax){
-        return producto.precio <= datosBusqueda.precioMax
+    if(precioMax.value){
+        return producto.precio <= precioMax.value
     }
     return producto;
 }
-
-
-// EJECUTAR 
-
-filtrarMacetas();

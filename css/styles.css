@@ -9,44 +9,24 @@ body {
   position: relative;
 }
 
-.tiendaProducto {
+.seccion {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
 /* MAIN DE LA TIENDA */
-.tiendaProducto ul li {
-  list-style-type: none;
-  overflow: hidden;
+.form {
+  margin-left: -40px;
 }
-.tiendaProducto ul li a {
+
+.titulos {
   font-family: "Lucida Sans";
-  font-size: 22px;
-  text-decoration: none;
-  color: #5b0b83;
-  text-align: left;
-}
-.tiendaProducto ul li a img {
-  width: 100%;
-  height: 100%;
-  transition: all 0.5s;
-}
-.tiendaProducto ul li a img:hover {
-  transform: scale(1.2);
-}
-.tiendaProducto ul li a img:active {
-  opacity: 0.5;
 }
 
-.description {
-  list-style-type: none;
-  font-size: 20px;
-}
-
-@media screen and (max-width: 767px) {
-  .tiendaProducto ul li {
-    margin-left: -10px;
-  }
-}
 /* MAIN DE TIENDA *//*# sourceMappingURL=styles.css.map */
